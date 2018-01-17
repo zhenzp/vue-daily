@@ -7,9 +7,9 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'home',
+            name: 'index',
             component: resolve => {
-                require(['@/views/home'], resolve);
+                require(['@/views/userInfo/userInfo'], resolve);
             }
         },
         {
@@ -17,6 +17,13 @@ export default new Router({
             name: 'HelloWorld',
             component: resolve => {
                 require(['@/components/HelloWorld'], resolve);
+            }
+        },
+        {
+            path: '/test',
+            name: 'test',
+            component: resolve => {
+                require(['@/components/test'], resolve);
             }
         }
     ]
