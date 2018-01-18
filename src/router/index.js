@@ -7,23 +7,37 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'index',
+            name: 'userInfo',
             component: resolve => {
                 require(['@/views/userInfo/userInfo'], resolve);
             }
         },
         {
-            path: '/hello',
-            name: 'HelloWorld',
+            path: '/add',
+            name: 'add',
             component: resolve => {
-                require(['@/components/HelloWorld'], resolve);
+                require(['@/views/addCon/add'], resolve);
             }
         },
         {
-            path: '/test',
-            name: 'test',
+            path: '/show',
+            name: 'show',
             component: resolve => {
-                require(['@/components/test'], resolve);
+                require(['@/views/showAdd/show'], resolve);
+            }
+        },
+        {
+            path: '/result',
+            name: 'result',
+            component: resolve => {
+                require(['@/views/result/result'], resolve);
+            }
+        },
+        {
+            path: '/upload',
+            name: 'upload',
+            component: resolve => {
+                require(['@/views/upload/index'], resolve);
             }
         }
     ]

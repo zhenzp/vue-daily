@@ -16,6 +16,8 @@ Vue.config.productionTip = false;
 require('./mock')
 // 引入axios
 require('./axios')
+// 引入untils
+require('./untils')
 
 /* eslint-disable no-new */
 new Vue({

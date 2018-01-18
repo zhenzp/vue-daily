@@ -7,7 +7,7 @@
         <Layout>
           <Layout :style="{marginLeft: '220px'}">
             <crumb-con></crumb-con>
-            <Content :style="{padding: '24px', minHeight: '100vh', background: '#fff'}">
+            <Content :style="{padding: '24px 24px 0', height: '600px', background: '#fff', overflowY:'auto'}">
               <router-view/>
             </Content>
           </Layout>

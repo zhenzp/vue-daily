@@ -10,9 +10,8 @@ const store = new Vuex.Store({
     },
     mutations: {
         changeName(state, msg) {
-            console.log(state.name + msg);
+            console.log(msg)
             state.name += 1;
-            return state.name + msg;
         }
     }
 });

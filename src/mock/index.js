@@ -21,6 +21,25 @@ const produceNewsData = function() {
         articles: articles
     };
 };
+// mock一组数据
+const imageData = function() {
+    let images = [];
+    for (let i = 0; i < 10; i++) {
+        let imageObject = {
+            id: Random.id(),
+            title: Random.ctitle(3, 5),
+            text: Random.csentence(5, 10),
+            name: Random.cname(),
+            url: Random.dataImage('200x100',"mockjs")
+        };
+        images.push(imageObject);
+    }
+
+    return {
+        images: images
+    };
+};
 
 // Mock.mock( url, post/get , 返回的数据)；
 Mock.mock('/news/index', 'post', produceNewsData);
+Mock.mock('/news/image', 'post', imageData);

@@ -1,8 +1,6 @@
 <template>
     <div>
-        <h1>
-            {{author}}
-        </h1>
+        <h1>改变值：{{author}}</h1>
     </div>
 </template>
 <script>
