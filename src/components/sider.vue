@@ -10,14 +10,11 @@
                     <Icon type="ios-navigate"></Icon>
                     Item 1
                 </template>
-                <MenuItem name="userInfo">
-                    table
+                <MenuItem name="one/userInfo"> table
                 </MenuItem>
-                <MenuItem name="add">
-                    加一
+                <MenuItem name="one/add"> 加一
                 </MenuItem>
-                <MenuItem name="show">
-                    加一效果
+                <MenuItem name="one/show"> 加一效果
                 </MenuItem>
             </Submenu>
             <Submenu name="2">
@@ -25,14 +22,14 @@
                     <Icon type="ios-keypad"></Icon>
                     Item 2
                 </template>
-                <MenuItem name="result">查询</MenuItem>
+                <MenuItem name="two/result">查询</MenuItem>
             </Submenu>
             <Submenu name="3">
                 <template slot="title">
                     <Icon type="ios-analytics"></Icon>
                     iview
                 </template>
-                <MenuItem name="upload">upload上传</MenuItem>
+                <MenuItem name="three/upload">upload上传</MenuItem>
                 <MenuItem name="3-2">Option 2</MenuItem>
             </Submenu>
         </Menu>
@@ -47,6 +44,7 @@ export default {
                     name: name
                 }
             )
+            this.$store.commit('changePath', name)
         }
     }
 }
