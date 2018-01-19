@@ -4,39 +4,41 @@
 
 <template>
     <Sider hide-trigger :style="{position: 'fixed', height: '100%', left: 0, overflow: 'auto'}">
-        <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']" @on-select='change'>
-            <Submenu name="1">
-                <template slot="title">
-                    <Icon type="ios-navigate"></Icon>
-                    Item 1
+        <Menu active-name="welcome" theme="dark" width="auto" :open-names="[]" @on-select='change'>
+
+            <template v-for="item in menuList">
+                <template v-if="!item.children">
+                    <MenuItem :name="item.name" :key="'menuitem' + item.key">
+                    <Icon :type="item.icon || ''" :size="iconSize" :key="'menuicon' + item.key"></Icon>
+                    <span :key="'title' + item.key">{{ item.title }}</span>
+                    </MenuItem>
                 </template>
-                <MenuItem name="one/userInfo"> table
-                </MenuItem>
-                <MenuItem name="one/add"> 加一
-                </MenuItem>
-                <MenuItem name="one/show"> 加一效果
-                </MenuItem>
-            </Submenu>
-            <Submenu name="2">
-                <template slot="title">
-                    <Icon type="ios-keypad"></Icon>
-                    Item 2
+                <template v-else>
+                    <Submenu :name="item.name" :key="item.key">
+                        <template slot="title">
+                            <Icon :type="item.icon" :size="iconSize"></Icon>
+                            <span>{{ item.title }}</span>
+                        </template>
+                        <template v-for="child in item.children">
+                            <MenuItem :name="child.key" :key="'menuitem' + child.key">
+                            <Icon :type="child.icon" :size="iconSize" :key="'icon' + child.key"></Icon>
+                            <span class="layout-text" :key="'title' + child.key">{{ child.title }}</span>
+                            </MenuItem>
+                        </template>
+                    </Submenu>
                 </template>
-                <MenuItem name="two/result">查询</MenuItem>
-            </Submenu>
-            <Submenu name="3">
-                <template slot="title">
-                    <Icon type="ios-analytics"></Icon>
-                    iview
-                </template>
-                <MenuItem name="three/upload">upload上传</MenuItem>
-                <MenuItem name="3-2">Option 2</MenuItem>
-            </Submenu>
+            </template>
         </Menu>
     </Sider>
 </template>
 <script>
 export default {
+    data() {
+        return {
+            iconSize: 16,
+            menuList: this.$store.state.menuList
+        }
+    },
     methods: {
         change(name) {
             this.$router.push(
@@ -46,6 +48,8 @@ export default {
             )
             this.$store.commit('changePath', name)
         }
+    },
+    mounted() {
     }
 }
 </script>

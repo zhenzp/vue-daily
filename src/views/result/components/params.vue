@@ -51,11 +51,11 @@
             <FormItem label="时间">
                 <Row>
                     <Col span="11">
-                    <DatePicker type="date" placeholder="Select date" v-model="formItem.date"></DatePicker>
+                    <DatePicker type="daterange" placeholder="Select date" :model="formItem.date" format="yyyy-MM-dd" placement='bottom-end' @on-change="(datetime) => { dataRangeChange(datetime,'start_date','end_date')}"></DatePicker>
                     </Col>
                     <Col span="2" style="text-align: center">-</Col>
                     <Col span="11">
-                    <TimePicker type="time" placeholder="Select time" v-model="formItem.time"></TimePicker>
+                    <TimePicker type="timerange" placeholder="Select time" :model="formItem.time" format="HH:mm:ss" placement='bottom-end'  @on-change="(datetime) => { dataRangeChange(datetime,'start_time','end_time')}"></TimePicker>
                     </Col>
                 </Row>
             </FormItem>
@@ -64,7 +64,7 @@
         <Row :gutter="16">
             <Col span="6" offset='18'>
             <FormItem>
-                <Button type="primary" @click="search">搜索</Button>
+                <Button type="primary" @click="searchFormSubmit">搜索</Button>
                 <Button type="ghost" @click="handleReset('formItem')" style="margin-left: 8px">重置</Button>
             </FormItem>
             </Col>
@@ -79,17 +79,38 @@ export default {
             formItem: {
                 name: '',
                 sex: 'male',
-                text: ''
+                text: '',
+                select: '',
+                checkbox: [],
+                switch: '',
+                start_date: '',
+                end_date: '',
+                start_time: '',
+                end_time: '',
             }
         }
     },
     methods: {
-        search() {
+        searchFormSubmit() {
+            this.$emit('formsubmit', this.formItem);
             bus.$emit('formsubmitBus', this.formItem);
         },
         handleReset(name) {
             this.$refs[name].resetFields();
-        }
+        },
+        //选择开始时间、结束时间
+        dataRangeChange(date, startKey, endKey) {
+            console.log('date',date)
+            console.log('startKey',startKey)
+            console.log('endKey',endKey)
+            if (typeof date[0] !== 'undefined' && date[0] != '') {
+                this.formItem[startKey] = date[0];
+                this.formItem[endKey] = date[1];
+            } else {
+                this.formItem[startKey] = '';
+                this.formItem[endKey] = '';
+            }
+        },
     }
 }
 </script>

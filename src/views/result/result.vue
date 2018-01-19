@@ -1,61 +1,34 @@
 <template>
     <div>
-        <params>
-            </params/>
-            <h2>{{paramsData}}</h2>
-            <Row style="background:#eee">
-                <Col span='11' offset='1' v-for="item in imageData" :key="item.id">
-                <div style="padding: 20px">
-                    <Card>
-                        <p slot="title">标题：{{item.title}}</p>
-                        <p>作者：{{item.name}}</p>
-                        <p>描述：{{item.text}}</p>
-                        <div style="textAlign:center;marginTop:20px">
-                            <img :src="item.url" :alt="item.name">
-                        </div>
-                    </Card>
-                </div>
-                </Col>
-            </Row>
+        <h3>父组件接收参数：{{paramsData}}</h3>
+        <params-con  v-on:formsubmit="searchFormSubmit"></params-con>
+        <table-con></table-con>
     </div>
 </template>
 <script>
 import bus from '@/eventBus'
 import axios from '@/axios'
-import params from './components/params'
+import paramsCon from './components/params'
+import tableCon from './components/table'
 export default {
     components: {
-        params,
+        paramsCon,
+        tableCon
     },
     data() {
         return {
-            paramsData: {
-                name: '',
-                sex: '',
-                text: ''
-            },
-            imageData: []
+            paramsData: {}
         }
     },
     methods: {
-        showParams() {
-            let _this = this
-            bus.$on('formsubmitBus', function(params) {
-                _this.paramsData = params
-                _this.getData()
-            });
-        },
-        getData() {
-            let _this = this;
-            axios("/news/image", 'type=top&key=123456')
-                .then(res => {
-                    console.log('mock', res)
-                    _this.imageData = res.images;
-                });
+        searchFormSubmit(search) {
+            console.log('父组件，接收search-form中的emit触发submit事件，接收search数组：',search)
+            this.paramsData={
+                ...search
+            }
         }
     },
     mounted() {
-        this.showParams()
     }
 }
 </script>
