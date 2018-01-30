@@ -72,45 +72,45 @@
     </Form>
 </template>
 <script>
-import bus from '@/eventBus'
+import bus from '@/eventBus';
 export default {
-    data() {
-        return {
-            formItem: {
-                name: '',
-                sex: 'male',
-                text: '',
-                select: '',
-                checkbox: [],
-                switch: '',
-                start_date: '',
-                end_date: '',
-                start_time: '',
-                end_time: '',
-            }
-        }
+  data() {
+    return {
+      formItem: {
+        name: '',
+        sex: 'male',
+        text: '',
+        select: '',
+        checkbox: [],
+        switch: '',
+        start_date: '',
+        end_date: '',
+        start_time: '',
+        end_time: ''
+      }
+    };
+  },
+  methods: {
+    searchFormSubmit() {
+      this.$emit('formsubmit', this.formItem);
+      bus.$emit('formsubmitBus', this.formItem);
     },
-    methods: {
-        searchFormSubmit() {
-            this.$emit('formsubmit', this.formItem);
-            bus.$emit('formsubmitBus', this.formItem);
-        },
-        handleReset(name) {
-            this.$refs[name].resetFields();
-        },
-        //选择开始时间、结束时间
-        dataRangeChange(date, startKey, endKey) {
-            console.log('date',date)
-            console.log('startKey',startKey)
-            console.log('endKey',endKey)
-            if (typeof date[0] !== 'undefined' && date[0] != '') {
-                this.formItem[startKey] = date[0];
-                this.formItem[endKey] = date[1];
-            } else {
-                this.formItem[startKey] = '';
-                this.formItem[endKey] = '';
-            }
-        },
+    handleReset(name) {
+      this.$refs[name].resetFields();
+    },
+    //选择开始时间、结束时间
+    dataRangeChange(date, startKey, endKey) {
+      console.log('date', date);
+      console.log('startKey', startKey);
+      console.log('endKey', endKey);
+      if (typeof date[0] !== 'undefined' && date[0] != '') {
+        this.formItem[startKey] = date[0];
+        this.formItem[endKey] = date[1];
+      } else {
+        this.formItem[startKey] = '';
+        this.formItem[endKey] = '';
+      }
     }
-}
+  }
+};
 </script>

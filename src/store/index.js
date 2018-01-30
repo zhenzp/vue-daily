@@ -45,35 +45,6 @@ const store = new Vuex.Store({
                 ]
             },
             {
-                title: '动作',
-                name: 'actions',
-                key: 'actions',
-                icon: 'ionic',
-                children: [
-                    {
-                        title: '用户信息',
-                        name: 'userInfo',
-                        key: 'userInfo',
-                        link: '/antions/userInfo',
-                        icon: 'loop'
-                    },
-                    {
-                        title: '加一',
-                        name: 'add',
-                        key: 'add',
-                        link: '/actions/add',
-                        icon: 'heart'
-                    },
-                    {
-                        title: '加一结果',
-                        name: 'show',
-                        key: 'show',
-                        link: '/actions/show',
-                        icon: 'wrench'
-                    }
-                ]
-            },
-            {
                 title: '数据',
                 name: 'data',
                 key: 'data',
@@ -93,6 +64,51 @@ const store = new Vuex.Store({
                 name: 'iview',
                 key: 'iview',
                 icon: 'link',
+                children: [
+                    {
+                        title: '上传',
+                        name: 'upload',
+                        key: 'upload',
+                        link: '/iview/upload',
+                        icon: 'compose'
+                    }
+                ]
+            },
+            {
+                title: '京东云',
+                name: 'iview',
+                key: 'iview',
+                icon: 'heart',
+                children: [
+                    {
+                        title: '上传',
+                        name: 'upload',
+                        key: 'upload',
+                        link: '/iview/upload',
+                        icon: 'compose'
+                    }
+                ]
+            },
+            {
+                title: '京东金融',
+                name: 'iview',
+                key: 'iview',
+                icon: 'cloud',
+                children: [
+                    {
+                        title: '上传',
+                        name: 'upload',
+                        key: 'upload',
+                        link: '/iview/upload',
+                        icon: 'compose'
+                    }
+                ]
+            },
+            {
+                title: '京东商城',
+                name: 'iview',
+                key: 'iview',
+                icon: 'person',
                 children: [
                     {
                         title: '上传',
