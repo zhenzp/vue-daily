@@ -77,7 +77,7 @@ const store = new Vuex.Store({
             {
                 title: '京东云',
                 name: 'iview',
-                key: 'iview',
+                key: 'iview2',
                 icon: 'heart',
                 children: [
                     {
@@ -92,7 +92,7 @@ const store = new Vuex.Store({
             {
                 title: '京东金融',
                 name: 'iview',
-                key: 'iview',
+                key: 'iview3',
                 icon: 'cloud',
                 children: [
                     {
@@ -107,7 +107,7 @@ const store = new Vuex.Store({
             {
                 title: '京东商城',
                 name: 'iview',
-                key: 'iview',
+                key: 'iview4',
                 icon: 'person',
                 children: [
                     {
