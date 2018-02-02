@@ -77,7 +77,7 @@ export default {
   data() {
     return {
       formItem: {
-        name: '1111',
+        name: '2222',
         sex: 'male',
         text: '',
         select: '',
