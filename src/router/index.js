@@ -47,6 +47,13 @@ export default new Router({
             component: resolve => {
                 require(['@/views/upload/index'], resolve);
             }
+        },
+        {
+            path: '/test',
+            name: 'test',
+            component: resolve => {
+                require(['@/views/test/index'], resolve);
+            }
         }
     ]
 });
