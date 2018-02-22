@@ -11,12 +11,24 @@
     </div>
 </template>
 <script>
-import axios from '@/axios'
+import axios from '@/axios';
+import expandRow from './table-expand.vue';
 export default {
     data() {
         return {
             userData: [],
             columns: [
+                {
+                    type: 'expand',
+                    width: 50,
+                    render: (h, params) => {
+                        return h(expandRow, {
+                            props: {
+                                row: params.row
+                            }
+                        });
+                    }
+                },
                 {
                     title: '作者',
                     key: 'author_name',
@@ -52,53 +64,62 @@ export default {
                     align: 'center',
                     render: (h, params) => {
                         return h('div', [
-                            h('Button', {
-                                props: {
-                                    type: 'primary',
-                                    size: 'small'
-                                },
-                                style: {
-                                    marginRight: '5px'
-                                },
-                                on: {
-                                    click: () => {
-                                        this.show(params.index)
+                            h(
+                                'Button',
+                                {
+                                    props: {
+                                        type: 'primary',
+                                        size: 'small'
+                                    },
+                                    style: {
+                                        marginRight: '5px'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.show(params.index);
+                                        }
                                     }
-                                }
-                            }, '查看'),
-                            h('Button', {
-                                props: {
-                                    type: 'error',
-                                    size: 'small'
                                 },
-                                on: {
-                                    click: () => {
-                                        this.remove(params.index)
+                                '查看'
+                            ),
+                            h(
+                                'Button',
+                                {
+                                    props: {
+                                        type: 'error',
+                                        size: 'small'
+                                    },
+                                    on: {
+                                        click: () => {
+                                            this.remove(params.index);
+                                        }
                                     }
-                                }
-                            }, '取消订阅')
+                                },
+                                '取消订阅'
+                            )
                         ]);
                     }
                 }
             ]
-        }
+        };
     },
     methods: {
         // 获取数据
         getData() {
             let _this = this;
-            axios("/news/index", 'type=top&key=123456')
-                .then(res => {
-                    console.log('mock', res)
-                    _this.userData = res.articles;
-                });
+            axios('/news/index', 'type=top&key=123456').then(res => {
+                console.log('mock', res);
+                _this.userData = res.articles;
+            });
         },
         // 详细页
         show(index) {
             this.$Modal.info({
                 title: 'User Info',
-                content: `Name：${this.userData[index].author_name}<br>Age：${this.userData[index].title}<br>Address：${this.userData[index].email}`
-            })
+                content: `Name：${this.userData[index].author_name}<br>Age：${
+                    this.userData[index].title
+                }<br>Address：${this.userData[index].email}`
+            });
         },
         // 删除
         remove(index) {
@@ -106,15 +127,15 @@ export default {
         },
         // 分页切换
         changePage(page) {
-            console.log('page', page)
+            console.log('page', page);
         },
         // 页码数切换
         changePageSize(pagesize) {
-            console.log('pagesize', pagesize)
+            console.log('pagesize', pagesize);
         }
     },
     mounted() {
-        this.getData()
+        this.getData();
     }
-}
+};
 </script>
