@@ -11,6 +11,7 @@ import 'iview/dist/styles/iview.css'
 Vue.use(iView)
 
 Vue.config.productionTip = false;
+Vue.config.silent  = false;
 
 // 引入mockjs
 require('./mock')
